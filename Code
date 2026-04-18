@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة الامتحانات</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f1f3f6;
+}
+
+/* Header */
+header {
+  background: #1e293b;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+}
+
+/* Container */
+.container {
+  padding: 20px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: #3b82f6;
+  color: white;
+}
+
+/* Button */
+button {
+  padding: 10px 15px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+/* Hidden */
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>📘 منصة الامتحانات</header>
+
+<div class="container">
+
+  <!-- الصفحة الرئيسية -->
+  <div id="home">
+    <h2>اختر المادة</h2>
+
+    <div class="grid">
+      <div class="card" onclick="openSubject('math')">📐 رياضيات</div>
+      <div class="card" onclick="openSubject('arabic')">📖 عربي</div>
+      <div class="card" onclick="openSubject('science')">🔬 علوم</div>
+    </div>
+  </div>
+
+  <!-- صفحة المادة -->
+  <div id="subject" class="hidden">
+    <button onclick="goBack()">⬅ رجوع</button>
+    <h2 id="subjectTitle"></h2>
+
+    <div class="grid">
+      <div class="card" onclick="openExam('1')">اختبار 1</div>
+      <div class="card" onclick="openExam('2')">اختبار 2</div>
+      <div class="card" onclick="openExam('3')">اختبار 3</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// فتح المادة
+function openSubject(name){
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("subject").classList.remove("hidden");
+
+  const titles = {
+    math: "مادة الرياضيات",
+    arabic: "مادة اللغة العربية",
+    science: "مادة العلوم"
+  };
+
+  document.getElementById("subjectTitle").innerText = titles[name];
+}
+
+// رجوع
+function goBack(){
+  document.getElementById("home").classList.remove("hidden");
+  document.getElementById("subject").classList.add("hidden");
+}
+
+// تجربة فتح اختبار
+function openExam(id){
+  alert("تم فتح الاختبار رقم " + id);
+}
+</script>
+
+</body>
+</html>
